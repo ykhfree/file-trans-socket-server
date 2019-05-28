@@ -1,4 +1,4 @@
-package ykhfree.dev.transfile.app;
+package ykhfree.dev.transfile.server.app;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;

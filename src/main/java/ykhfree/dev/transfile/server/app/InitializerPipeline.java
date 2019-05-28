@@ -1,4 +1,4 @@
-package ykhfree.dev.transfile.app;
+package ykhfree.dev.transfile.server.app;
 
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;

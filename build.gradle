@@ -33,7 +33,7 @@ dependencies {
 
 jar {
     manifest {
-        attributes 'Main-Class': 'ykhfree.dev.transfile.app.SocketServer'
+        attributes 'Main-Class': 'ykhfree.dev.transfile.server.app.SocketServer'
     }
 
     from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
