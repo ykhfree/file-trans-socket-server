@@ -1,0 +1,46 @@
+plugins {
+    id 'java'
+}
+
+group 'ykhfree.dev'
+version '0.8'
+
+sourceCompatibility = 1.8
+
+// 소스 인코딩 지정방법
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+def version = [
+        logbackClassic: '1.1.7',
+        logbackAccess: '1.1.7',
+        netty: '4.0.0.Final'
+]
+
+repositories {
+    mavenCentral()
+
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile "ch.qos.logback:logback-classic:${version.logbackClassic}"
+    compile "ch.qos.logback:logback-access:${version.logbackAccess}"
+    compile "io.netty:netty-all:${version.netty}"
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'ykhfree.dev.transfile.app.SocketServer'
+    }
+
+    from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+}
+
+//lib파일 옮기기
+task copyToLib(type: Copy) {
+    into "$buildDir/output/libs"
+    from configurations.runtime
+}
