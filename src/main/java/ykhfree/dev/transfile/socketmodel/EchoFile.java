@@ -15,9 +15,9 @@ public class EchoFile implements Serializable {
 	 */
 	private int countPackage;
 	/**
-	 * 파일명
+	 * 원본 파일경로
 	 */
-	private String fileNm;
+	private String srcFilePath;
 	/**
 	 * 파일 바이트
 	 */
@@ -27,34 +27,32 @@ public class EchoFile implements Serializable {
 	 */
 	private String systemId;
 	/**
-	 * 복사 장소
+	 * 복사 파일경로
 	 */
-	private String file_to;
+	private String destFilePath;
 
-	/**
-	 * @return the sumCountPackage
-	 */
 	public int getSumCountPackage() {
 		return sumCountPackage;
 	}
 
-	/**
-	 * @param sumCountPackage
-	 *            the sumCountPackage to set
-	 */
 	public void setSumCountPackage(int sumCountPackage) {
 		this.sumCountPackage = sumCountPackage;
 	}
 
-	/**
-	 * @return the countPackage
-	 */
 	public int getCountPackage() {
 		return countPackage;
 	}
 
 	public void setCountPackage(int countPackage) {
 		this.countPackage = countPackage;
+	}
+
+	public String getSrcFilePath() {
+		return srcFilePath;
+	}
+
+	public void setSrcFilePath(String srcFilePath) {
+		this.srcFilePath = srcFilePath;
 	}
 
 	public byte[] getBytes() {
@@ -65,14 +63,6 @@ public class EchoFile implements Serializable {
 		this.bytes = bytes;
 	}
 
-	public String getFileNm() {
-		return fileNm;
-	}
-
-	public void setFileNm(String fileNm) {
-		this.fileNm = fileNm;
-	}
-
 	public String getSystemId() {
 		return systemId;
 	}
@@ -81,11 +71,11 @@ public class EchoFile implements Serializable {
 		this.systemId = systemId;
 	}
 
-	public String getFile_to() {
-		return file_to;
+	public String getDestFilePath() {
+		return destFilePath;
 	}
 
-	public void setFile_to(String file_to) {
-		this.file_to = file_to;
+	public void setDestFilePath(String destFilePath) {
+		this.destFilePath = destFilePath;
 	}
 }
