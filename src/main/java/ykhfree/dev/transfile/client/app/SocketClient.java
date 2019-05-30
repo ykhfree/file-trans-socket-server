@@ -50,11 +50,11 @@ public class SocketClient {
      */
     private static final Logger logger = LoggerFactory.getLogger(SocketClient.class);
 
-    private static EchoFile setEchoFile(String fileName, String filePath) {
+    private static EchoFile setEchoFile(String srcFilePath, String destFilePath) {
         EchoFile echoFile = new EchoFile();
 
-        echoFile.setFileNm(fileName);
-        echoFile.setFile_to(filePath);
+        echoFile.setSrcFilePath(srcFilePath);
+        echoFile.setDestFilePath(destFilePath);
 
         return echoFile;
     }
@@ -79,11 +79,18 @@ public class SocketClient {
 
             logger.info("================================================== load a properties file success");
 
+            // 서버 소켓 IP 지정
+            String ip = prop.getProperty("ip");
+
             // 서버 소켓 포트 번호 지정
             int socketPort = Integer.parseInt(prop.getProperty("port"));
+
+            // bufferSize 지정
             int bufferSize = Integer.parseInt(prop.getProperty("buffer"));
 
-            EchoFile echoFile = setEchoFile("fileName", "filePath");
+            // srcFilePath에 복사 대상 파일을 기입
+            // destFilePath에 복사할 타겟 경로를 기입
+            EchoFile echoFile = setEchoFile("srcFilePath", "destFilePath");
             ResultMsg resultMsg = new ResultMsg();
 
             Bootstrap bootstrap = new Bootstrap();
@@ -103,9 +110,9 @@ public class SocketClient {
                     });
 
 
-            logger.info("connect to {}:{}", "127.0.0.1", socketPort);
+            logger.info("connect to {}:{}", ip, socketPort);
 
-            ChannelFuture future = bootstrap.connect("127.0.0.1", socketPort).sync();
+            ChannelFuture future = bootstrap.connect(ip, socketPort).sync();
 
             //소켓이 닫힐떄까지 대기
             future.channel().closeFuture().sync();
