@@ -102,9 +102,9 @@ public class SocketClientHandler extends ChannelInboundHandlerAdapter {
 
                 ctx.close();
             }
-            /**
-             * 에러 발생시 메시지 받기
-             */
+        /**
+         * 에러 발생시 메시지 받기
+         */
         } else if(msg instanceof ResultMsg) {
             // 에러발생!!
             ResultMsg resultMsg = (ResultMsg) msg;
