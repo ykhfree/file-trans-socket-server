@@ -33,7 +33,7 @@ public class SocketClientHandler extends ChannelInboundHandlerAdapter {
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
 
         // 파일이 존재하는지 확인 있으면 삭제하기
-        filePath = this.echoFile.getFile_to();
+        filePath = this.echoFile.getDestFilePath();
 
         File file = new File(filePath);
         if(file.exists()) {

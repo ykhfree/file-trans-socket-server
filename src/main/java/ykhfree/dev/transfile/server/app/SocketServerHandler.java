@@ -64,11 +64,11 @@ public class SocketServerHandler extends ChannelInboundHandlerAdapter {
             int dataLength = Integer.parseInt(this.prop.getProperty("buffer"));
             if(echoFile.getCountPackage() == 0) {
                 try {
-                    File file = new File(echoFile.getFileNm());
+                    File file = new File(echoFile.getSrcFilePath());
 
                     if (file.exists()) {    //파일이 존재한다면
 
-                        logger.info(echoFile.getFileNm() + " transfer start!!!");
+                        logger.info(echoFile.getSrcFilePath() + " transfer start!!!");
 
                         randomAccessFile = new RandomAccessFile(file, "r");
                         randomAccessFile.seek(0);
@@ -91,7 +91,7 @@ public class SocketServerHandler extends ChannelInboundHandlerAdapter {
                             msgFile.setSumCountPackage(sumCountpackage);
                             msgFile.setCountPackage(1);
                             msgFile.setBytes(bytes);
-                            msgFile.setFileNm(file.getName());
+                            msgFile.setSrcFilePath(file.getName());
                             ctx.writeAndFlush(msgFile);
                         }
 
@@ -139,7 +139,7 @@ public class SocketServerHandler extends ChannelInboundHandlerAdapter {
                         ctx.writeAndFlush(msgEchoFile);
                     } else {
 
-                        logger.info(msgEchoFile.getFileNm() + " transfer End!!!");
+                        logger.info(msgEchoFile.getSrcFilePath() + " transfer End!!!");
 
                         randomAccessFile.close();
                         ctx.close();
